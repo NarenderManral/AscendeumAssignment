@@ -1,3 +1,4 @@
+
 # Online Python compiler (interpreter) to run Python online.
 # Write Python 3 code in this online editor and run it.
 #print("Hello world")
@@ -8,6 +9,7 @@ playersCurPos = [0,0,0,0]
 playersPos = [[],[],[],[]]
 xCoordinate = []
 yCoordinate = []
+playersCur = [0,0,0,0]
 flag = 0;
 diceRollHistory = [[],[],[],[]]
 win = False;
@@ -41,8 +43,26 @@ while(win==False):
             playersPos[i] = temp + [playersPos[i][len(temp)-1]]
         else:
             playersPos[i] = temp + [playersPos[i][len(temp)-1]+dice]
-            
-        temp= playersPos[i]
+        playersCur[i] = playersPos[i][len(temp)-1]
+        
+        if(xCoordinate[playersCur[i]] == yCoordinate[playersCur[i]]):
+            pass
+        else if(i!=0 && (xCoordinate[playersCur[i]] == yCoordinate[playersCur[0]]) && (xCoordinate[playersCur[0]] == yCoordinate[playersCur[i]])):
+            playersCur[0][len(playersCur[0])-1]= 0
+            playersPos[0][len(playersCur[0])-1] = 0
+        else if((i!=1 && xCoordinate[playersCur[i]] == yCoordinate[playersCur[1]] && xCoordinate[playersCur[1]] == yCoordinate[playersCur[i]])):
+            playersCur[1][len(playersCur[1])-1]= 0
+            playersPos[1][len(playersCur[1])-1] = 0
+        else if( (i!=2 && xCoordinate[playersCur[i]] == yCoordinate[playersCur[2]] && xCoordinate[playersCur[2]] == yCoordinate[playersCur[i]])):
+            playersCur[1][len(playersCur[1])-1]= 0
+            playersPos[1][len(playersCur[1])-1] = 0
+        elif((i!=3 && xCoordinate[playersCur[i]] == yCoordinate[playersCur[3]] && xCoordinate[playersCur[3]] == yCoordinate[playersCur[i]])):
+            playersCur[1][len(playersCur[1])-1]=  0
+            playersPos[1][len(playersCur[1])-1] = 0
+        elif( (i!=0 && playersCur[i]==playersCur[0]) || (i!=1 && playersCur[i]==playersCur[1]) || (i!=2 && playersCur[i]==playersCur[2]) || (i!=3 && playersCur[i]==playersCur[2] ) ):
+            playersCur[i][len(playersCur[i])-1]=  0
+            playersPos[i][len(playersCur[i])-1] = 0
+        
         if(playersPos[i][len(temp)-1] == n*n):
             win=True
             winner = i;
@@ -71,5 +91,3 @@ for i in range(4):
         
     #print("------------------------------------")
     #print("------------------------------------")
-
-
